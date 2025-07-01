@@ -228,8 +228,8 @@
         appendMessage("Oops! Something went wrong.", 'bot');
       }
          // Send log to Google Sheets
-    try {
-        fetch("https://script.google.com/macros/s/AKfycbwSW3hi25gHAlwwlZstVtor5Xh12V8sH1hVksY0iGwey-iB7lMIVcrucibJ3EuBGU5Kqw/exec", {
+      try {
+        await fetch("https://yonten-melong-backend.onrender.com/log", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ user: message, bot: data.reply })
