@@ -244,6 +244,26 @@
       chatLog.appendChild(div);
       chatLog.scrollTop = chatLog.scrollHeight;
     }
+    // Send log to Google Sheets
+    try {
+        fetch("https://script.google.com/macros/s/AKfycbwSW3hi25gHAlwwlZstVtor5Xh12V8sH1hVksY0iGwey-iB7lMIVcrucibJ3EuBGU5Kqw/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user: message, bot: data.reply })
+        });
+      } catch (e) {
+        console.warn("Logging failed", e);
+      }
+
+    fetch("https://script.google.com/macros/s/AKfycbwSW3hi25gHAlwwlZstVtor5Xh12V8sH1hVksY0iGwey-iB7lMIVcrucibJ3EuBGU5Kqw/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: message,
+        bot: data.reply
+      })
+    });
+
   </script>
 </body>
 </html>
