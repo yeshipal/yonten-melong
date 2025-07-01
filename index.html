@@ -226,7 +226,7 @@
       document.querySelector('#chat-log .typing')?.remove();
       appendMessage(data.reply, 'bot');
 
-      // ✅ Send log to Google Sheets
+      // Send log to Google Sheets
       try {
         await fetch("https://script.google.com/macros/s/AKfycbwSW3hi25gHAlwwlZstVtor5Xh12V8sH1hVksY0iGwey-iB7lMIVcrucibJ3EuBGU5Kqw/exec", {
           method: "POST",
@@ -257,6 +257,5 @@
       </div>
     `;
     chatLog.appendChild(div);
-
 </body>
 </html>
