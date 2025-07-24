@@ -199,10 +199,19 @@
   </div>
 <script>
   const textarea = document.getElementById('message');
-  textarea.addEventListener('input', () => {
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
-  });
+  // Auto-resize on input
+textarea.addEventListener('input', () => {
+  textarea.style.height = 'auto';
+  textarea.style.height = textarea.scrollHeight + 'px';
+});
+
+// 🔁 Enter to send, Shift+Enter for newline
+textarea.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
 
   async function sendMessage() {
     const message = textarea.value.trim();
