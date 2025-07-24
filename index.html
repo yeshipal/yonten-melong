@@ -198,6 +198,11 @@
     </footer>
   </div>
 <script>
+  if (!localStorage.sessionId) {
+  localStorage.sessionId = crypto.randomUUID();
+}
+const sessionId = localStorage.sessionId;
+
   const textarea = document.getElementById('message');
   // Auto-resize on input
 textarea.addEventListener('input', () => {
@@ -234,10 +239,11 @@ textarea.addEventListener('keydown', (e) => {
 
     try {
       const response = await fetch('https://yonten-melong-backend.onrender.com/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
-      });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ message, sessionId })
+});
+
       const data = await response.json();
       document.querySelector('#chat-log .typing')?.remove();
       appendMessage(data.reply, 'bot');
